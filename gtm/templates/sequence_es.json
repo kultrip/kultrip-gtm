@@ -1,0 +1,24 @@
+{
+  "name": "kultrip_agency_es_v1",
+  "from_name": "Charles from Kultrip",
+  "steps": [
+    {
+      "step": 1,
+      "delay_days": 0,
+      "subject": "{{agency_label|default:Agencia de viajes}}: mas leads con historias de viaje",
+      "body": "Hola {{first_name|default:}}\n\nSoy Charles, de Kultrip. Ayudamos a agencias de viaje a convertir visitas a la web en leads reales con un mini chatbot inspirado en historias.\n\nEl viajero responde 4-5 preguntas (historia, destino, fechas, presupuesto) y recibe una guia de viaje personalizada. La agencia recibe el lead para cerrar la venta.\n\n¿Te gustaria verlo? Se instala como un widget en la web y el primer tramo es gratis (10 leads).\n\nPuedo enviarte un demo o ayudarte a activarlo en {{website_safe|default:tu web}}.\n\nSaludos,\nCharles\nKultrip\n{{company_address|default:}}\nSi prefieres no recibir mas mensajes, responde con \"unsubscribe\"."
+    },
+    {
+      "step": 2,
+      "delay_days": 3,
+      "subject": "Ejemplo real de guía + lead (Kultrip)",
+      "body": "Hola {{first_name|default:}}\n\nTe comparto un ejemplo de como se ve la guia de viaje que recibe el cliente y el lead que recibe la agencia.\n\n¿Te lo envio por aqui o por WhatsApp?\n\nSaludos,\nCharles\nKultrip\n{{company_address|default:}}\nSi prefieres no recibir mas mensajes, responde con \"unsubscribe\"."
+    },
+    {
+      "step": 3,
+      "delay_days": 5,
+      "subject": "¿Te lo guardo para más adelante?",
+      "body": "Hola {{first_name|default:}}\n\nNo quiero molestar. Si ahora no es prioridad, dime y lo dejo en pausa.\n\nKultrip convierte visitas curiosas en leads cualificados con una experiencia tipo concierge + guia personalizada.\n\n¿Quieres que lo retomemos en unas semanas?\n\nSaludos,\nCharles\nKultrip\n{{company_address|default:}}\nSi prefieres no recibir mas mensajes, responde con \"unsubscribe\"."
+    }
+  ]
+}
