@@ -5,7 +5,7 @@ import time
 import urllib.request
 import urllib.error
 
-from utils import env_get, read_csv, write_csv, now_iso
+from utils import env_get, read_csv, write_csv, now_iso, is_valid_email
 from render import render_template
 
 
@@ -123,7 +123,7 @@ def main():
             "subject": subject,
             "content": [{"type": "text/plain", "value": body}],
         }
-        if agency_email:
+        if agency_email and is_valid_email(agency_email.lower()):
             payload["reply_to"] = {"email": agency_email}
 
         send_rows.append((email, subject, payload))
