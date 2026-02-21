@@ -3,6 +3,7 @@ import json
 import os
 import time
 import urllib.request
+import urllib.error
 
 from utils import env_get, read_csv, write_csv, now_iso
 from render import render_template
@@ -54,8 +55,16 @@ def send_sendgrid(api_key, payload):
         },
         method="POST",
     )
-    with urllib.request.urlopen(req) as resp:
-        return resp.status
+    try:
+        with urllib.request.urlopen(req) as resp:
+            return resp.status, ""
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="ignore")
+        except Exception:
+            body = ""
+        return e.code, body
 
 
 def main():
@@ -125,8 +134,14 @@ def main():
         if args.dry_run:
             print(f"DRY RUN -> {email} :: {subject}")
         else:
-            status = send_sendgrid(api_key, payload)
-            print(f"SENT {status} -> {email}")
+            status, err = send_sendgrid(api_key, payload)
+            if 200 <= int(status) < 300:
+                print(f"SENT {status} -> {email}")
+            else:
+                print(f"ERROR {status} -> {email}")
+                if err:
+                    print(err)
+                raise SystemExit(1)
             time.sleep(args.sleep)
         sent_log_rows.append({
             "sent_at": now_iso(),
