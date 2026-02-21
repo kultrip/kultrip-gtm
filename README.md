@@ -23,3 +23,22 @@ Cold email GTM tooling for Kultrip.
 ## Notes
 - Only send to business addresses and honor opt-outs.
 - Start with low volume and ramp up after confirming deliverability.
+
+## GitHub Actions automation
+There is a workflow at `.github/workflows/gtm-send.yml` that sends Step 1 six times per day.
+It uses a random batch size between 10 and 40 each run.
+
+Required GitHub Secrets:
+- `SENDGRID_API_KEY`
+- `FROM_EMAIL`
+- `AGENCY_EMAIL`
+- `COMPANY_ADDRESS`
+- `SUMMARY_EMAIL` (optional; defaults to `AGENCY_EMAIL`)
+
+Note: GitHub Actions schedules are UTC. The workflow is set to 01:00, 05:00, 09:00,
+13:00, 17:00, 21:00 UTC (10:00, 14:00, 18:00, 22:00, 02:00, 06:00 in Spain during
+standard time). In daylight saving time it will run one hour later locally.
+
+There is also a daily summary workflow at `.github/workflows/gtm-summary.yml` that
+sends a 24h summary to `SUMMARY_EMAIL` or `AGENCY_EMAIL` at 05:00 UTC (06:00 Spain
+standard time).

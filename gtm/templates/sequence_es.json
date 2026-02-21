@@ -6,7 +6,7 @@
       "step": 1,
       "delay_days": 0,
       "subject": "{{agency_label|default:Agencia de viajes}}: mas leads con historias de viaje",
-      "body": "Hola {{first_name|default:}}\n\nSoy Charles, de Kultrip. Ayudamos a agencias de viaje a convertir visitas a la web en leads reales con un mini chatbot inspirado en historias.\n\nEl viajero responde 4-5 preguntas (historia, destino, fechas, presupuesto) y recibe una guia de viaje personalizada. La agencia recibe el lead para cerrar la venta.\n\n¿Te gustaria verlo? Se instala como un widget en la web y el primer tramo es gratis (10 leads).\n\nPuedo enviarte un demo o ayudarte a activarlo en {{website_safe|default:tu web}}.\n\nSaludos,\nCharles\nKultrip\n{{company_address|default:}}\nSi prefieres no recibir mas mensajes, responde con \"unsubscribe\"."
+      "body": "Hola {{first_name|default:}}\n\nSoy Charles, de Kultrip. Ayudamos a agencias de viaje a convertir visitas a la web en leads reales con un mini chatbot inspirado en historias.\n\nEl viajero responde 4-5 preguntas (historia, destino, fechas, presupuesto) y recibe una guia de viaje personalizada. La agencia recibe el lead para cerrar la venta.\n\n¿Te gustaria verlo? Se instala como un widget en la web y el primer tramo es gratis (10 leads).\n\nPuedes activar la prueba aqui: https://kultrip.com/register\nO reservar una demo: https://cal.com/kultrip/call\n\nPuedo ayudarte a activarlo en {{website_safe|default:tu web}}.\n\nSaludos,\nCharles\nKultrip\n{{company_address|default:}}\nSi prefieres no recibir mas mensajes, responde con \"unsubscribe\"."
     },
     {
       "step": 2,

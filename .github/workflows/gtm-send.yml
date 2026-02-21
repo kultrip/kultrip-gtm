@@ -1,0 +1,57 @@
+name: kultrip-cold-email-step1
+
+on:
+  schedule:
+    # 10:00, 14:00, 18:00, 22:00, 02:00, 06:00 Europe/Madrid during standard time (UTC+1).
+    # Note: During daylight saving time these run one hour later locally.
+    - cron: "0 1 * * *"
+    - cron: "0 5 * * *"
+    - cron: "0 9 * * *"
+    - cron: "0 13 * * *"
+    - cron: "0 17 * * *"
+    - cron: "0 21 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install openpyxl
+
+      - name: Restore send state cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            gtm/logs
+            gtm/output/unsubscribe.csv
+          key: kultrip-gtm-state
+          restore-keys: |
+            kultrip-gtm-state
+
+      - name: Build leads
+        run: python gtm/build_leads.py
+
+      - name: Send step 1 (random 10-40)
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          AGENCY_EMAIL: ${{ secrets.AGENCY_EMAIL }}
+          COMPANY_ADDRESS: ${{ secrets.COMPANY_ADDRESS }}
+        run: |
+          LIMIT=$((10 + RANDOM % 31))
+          python gtm/send.py --step 1 --limit $LIMIT
+
+      - name: Save send state cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            gtm/logs
+            gtm/output/unsubscribe.csv
+          key: kultrip-gtm-state
