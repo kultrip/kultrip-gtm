@@ -26,7 +26,7 @@ Cold email GTM tooling for Kultrip.
 
 ## GitHub Actions automation
 There is a workflow at `.github/workflows/gtm-send.yml` that sends Step 1 six times per day.
-It uses a random batch size between 10 and 40 each run.
+It sends a fixed batch size of 30 each run.
 
 Required GitHub Secrets:
 - `SENDGRID_API_KEY`

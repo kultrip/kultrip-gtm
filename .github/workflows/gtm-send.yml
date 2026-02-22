@@ -38,14 +38,14 @@ jobs:
       - name: Build leads
         run: python gtm/build_leads.py
 
-      - name: Send step 1 (random 10-40)
+      - name: Send step 1 (fixed 30)
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
           AGENCY_EMAIL: ${{ secrets.AGENCY_EMAIL }}
           COMPANY_ADDRESS: ${{ secrets.COMPANY_ADDRESS }}
         run: |
-          LIMIT=$((10 + RANDOM % 31))
+          LIMIT=30
           python gtm/send.py --step 1 --limit $LIMIT
 
       - name: Save send state cache
